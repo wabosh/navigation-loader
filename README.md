@@ -1,6 +1,6 @@
 # Navigation Loader
 
-A simple-to-use navigation loadin indicator.
+A simple-to-use navigation loading indicator.
 
 ## Install
 
