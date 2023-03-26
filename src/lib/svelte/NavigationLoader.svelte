@@ -38,6 +38,7 @@
 
 <style lang="scss">
 	.container {
+		pointer-events: none;
 		position: fixed;
 		top: 0;
 		left: 0;
