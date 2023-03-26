@@ -3,6 +3,7 @@
 
 	export let animationDuration = 800;
 	export let color: string = '#7fffd4';
+	export let height = 4;
 
 	let currentState: 'waiting' | 'loading' | 'doneLoading' | 'cleanupLoading' = 'waiting';
 
@@ -29,7 +30,7 @@
 	}
 </script>
 
-<div class="container">
+<div class="container" style="--height: {height}px">
 	<div
 		class="loading-bar {currentState}"
 		style="transition: all ease-in-out {animationDuration}ms; background-color: {color}"
@@ -44,7 +45,7 @@
 		left: 0;
 		min-width: 100vw;
 		width: 100%;
-		height: 4px;
+		height: var(--height);
 
 		.loading-bar {
 			display: block;
