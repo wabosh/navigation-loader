@@ -29,7 +29,7 @@
 	}
 
 	// Duration
-	let duration = '1000';
+	let duration = '250';
 	let loaderDuration = Number(duration.replace(/\D/g, ''));
 
 	$: {
@@ -51,16 +51,27 @@
 />`.split('\n');
 </script>
 
+<svelte:head>
+	<title>Svelte Navigation Loader</title>
+</svelte:head>
+
 <NavigationLoader animationDuration={loaderDuration} color={loaderColor} height={loaderSize} />
 <div class="p-8 flex flex-col gap-8 justify-between min-h-screen">
 	<!-- Controls -->
 	<div class="flex flex-col lg:flex-row gap-8 justify-between">
-		<h1 class="self-center mr-4">Navigation Loader</h1>
+		<div class="flex flex-col gap-0">
+			<span>Svelte</span>
+			<h1 class="self-center mr-4 mt-0 pt-0">Navigation Loader</h1>
+		</div>
 
 		<div class="flex flex-col lg:flex-row gap-8">
 			<div class="form-control w-full max-w-xs">
 				<label for="color" class="label">
 					<span class="label-text">Color</span>
+					<span
+						style="background-color: {loaderColor};"
+						class="label-text-alt block rounded-[0.5rem] w-[5%] h-0 pb-[5%]"
+					/>
 				</label>
 				<input
 					name="color"
