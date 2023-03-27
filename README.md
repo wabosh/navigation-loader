@@ -1,3 +1,7 @@
+![npm](https://img.shields.io/npm/v/@wabosh/navigation-loader)
+![NPM](https://img.shields.io/npm/l/@wabosh/navigation-loader)
+![GitHub last commit](https://img.shields.io/github/last-commit/wabosh/navigation-loader)
+
 # Navigation Loader
 
 A simple-to-use navigation loading indicator.
