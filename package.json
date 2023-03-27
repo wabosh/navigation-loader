@@ -1,6 +1,6 @@
 {
 	"name": "@wabosh/navigation-loader",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "A small loading bar, listening to navigation state",
 	"keywords": [
 		"svelte",
@@ -8,6 +8,7 @@
 		"loading",
 		"navigation"
 	],
+	"homepage": "https://navigation-loader.vercel.app",
 	"license": "MIT",
 	"repository": "github:wabosh/navigation-loader",
 	"scripts": {
