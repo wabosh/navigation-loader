@@ -11,6 +11,7 @@
 	"homepage": "https://navigation-loader.vercel.app",
 	"license": "MIT",
 	"repository": "github:wabosh/navigation-loader",
+	"main": "dist/index.js",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
