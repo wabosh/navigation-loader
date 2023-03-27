@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { navigating } from '$app/stores';
 
-	export let animationDuration = 800;
+	export let animationDuration = 250;
 	export let color: string = '#7fffd4';
 	export let height = 4;
 
@@ -15,10 +15,13 @@
 		} else {
 			if (currentState == 'loading') {
 				currentState = 'doneLoading';
+
 				if (resetTimeout) {
 					clearTimeout(resetTimeout);
 					resetTimeout = undefined;
 				}
+
+				// Start cleanup animation
 				resetTimeout = window.setTimeout(() => {
 					currentState = 'cleanupLoading';
 					resetTimeout = window.setTimeout(() => {
@@ -33,7 +36,7 @@
 <div class="container" style="--height: {height}px">
 	<div
 		class="loading-bar {currentState}"
-		style="transition: all ease-in-out {animationDuration}ms; background-color: {color}"
+		style="background-color: {color}; --duration: {animationDuration}ms"
 	/>
 </div>
 
@@ -50,6 +53,7 @@
 		.loading-bar {
 			display: block;
 			height: 100%;
+			transition: opacity ease-in-out var(--duration);
 
 			&.waiting {
 				width: 0;
@@ -57,16 +61,19 @@
 			}
 
 			&.loading {
-				width: 20%;
+				transition: width cubic-bezier(0, 0.55, 0.45, 1) 20s;
+				width: 50%;
 				opacity: 1;
 			}
 
 			&.doneLoading {
+				transition: width ease-in-out var(--duration);
 				width: 100%;
 				opacity: 1;
 			}
 
 			&.cleanupLoading {
+				transition: opacity ease-in-out var(--duration);
 				opacity: 0;
 				width: 100%;
 			}
