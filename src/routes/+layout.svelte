@@ -4,7 +4,7 @@
 	import NavigationLoader from '$lib/svelte/NavigationLoader.svelte';
 	import { page } from '$app/stores';
 
-	$: target = $page.url.pathname == '/next' ? '/' : '/next';
+	$: target = $page.url.pathname == '/next' ? '/?load' : '/next?load';
 
 	// Color
 	let color = '#66cc8a';

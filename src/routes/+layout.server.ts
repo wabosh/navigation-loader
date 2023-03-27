@@ -1,13 +1,17 @@
 import type { LayoutServerLoad } from './$types';
 
-export const load = (async () => {
+export const load = (async ({ url }) => {
+	const simulateLoading = url.searchParams.has("load");
+
 	try {
 		console.log('Start load');
-		await new Promise<void>((resolve) => {
-			setTimeout(() => {
-				resolve();
-			}, 2000);
-		});
+		if (simulateLoading) {
+			await new Promise<void>((resolve) => {
+				setTimeout(() => {
+					resolve();
+				}, 2000);
+			});
+		}
 		return {
 			status: 'ok'
 		};
