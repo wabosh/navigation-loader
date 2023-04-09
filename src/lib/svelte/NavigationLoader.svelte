@@ -33,15 +33,15 @@
 	}
 </script>
 
-<div class="container" style="--height: {height}px">
+<div class="navigation-loader-container" style="--height: {height}px">
 	<div
-		class="loading-bar {currentState}"
+		class="navigation-loader-loading-bar {currentState}"
 		style="background-color: {color}; --duration: {animationDuration}ms"
 	/>
 </div>
 
 <style lang="scss">
-	.container {
+	.navigation-loader-container {
 		pointer-events: none;
 		position: fixed;
 		top: 0;
@@ -50,7 +50,7 @@
 		width: 100%;
 		height: var(--height);
 
-		.loading-bar {
+		.navigation-loader-loading-bar {
 			display: block;
 			height: 100%;
 			transition: opacity ease-in-out var(--duration);
