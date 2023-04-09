@@ -1,6 +1,6 @@
 {
 	"name": "@wabosh/navigation-loader",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"description": "A small loading bar, listening to navigation state",
 	"keywords": [
 		"svelte",

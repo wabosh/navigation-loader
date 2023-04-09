@@ -6,6 +6,8 @@
 # Navigation Loader
 
 A simple-to-use navigation loading indicator.
+It uses navigation state to display loading (with unknown duration) with a customizable fixed loading bar at the top of the page.
+Currently tested with `goto(...)` as well as `<a href="...">...</a>` navigation.
 
 ## Install
 
