@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { navigating } from '$app/stores';
 
 	export let animationDuration = 250;
@@ -10,24 +11,26 @@
 	let resetTimeout: number | undefined = undefined;
 
 	$: {
-		if ($navigating) {
-			currentState = 'loading';
-		} else {
-			if (currentState == 'loading') {
-				currentState = 'doneLoading';
+		if (browser) {
+			if ($navigating) {
+				currentState = 'loading';
+			} else {
+				if (currentState == 'loading') {
+					currentState = 'doneLoading';
 
-				if (resetTimeout) {
-					clearTimeout(resetTimeout);
-					resetTimeout = undefined;
-				}
+					if (resetTimeout) {
+						clearTimeout(resetTimeout);
+						resetTimeout = undefined;
+					}
 
-				// Start cleanup animation
-				resetTimeout = window.setTimeout(() => {
-					currentState = 'cleanupLoading';
+					// Start cleanup animation
 					resetTimeout = window.setTimeout(() => {
-						currentState = 'waiting';
+						currentState = 'cleanupLoading';
+						resetTimeout = window.setTimeout(() => {
+							currentState = 'waiting';
+						}, animationDuration);
 					}, animationDuration);
-				}, animationDuration);
+				}
 			}
 		}
 	}
