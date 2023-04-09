@@ -4,6 +4,8 @@
 	"description": "A small loading bar, listening to navigation state",
 	"keywords": [
 		"svelte",
+		"sveltekit",
+		"loading-bar",
 		"component",
 		"loading",
 		"navigation"
