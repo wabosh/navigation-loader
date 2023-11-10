@@ -45,6 +45,7 @@
 
 <style lang="scss">
 	.navigation-loader-container {
+		z-index: 99999;
 		pointer-events: none;
 		position: fixed;
 		top: 0;
