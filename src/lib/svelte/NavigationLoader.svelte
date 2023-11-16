@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { navigating } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	export let animationDuration = 250;
 	export let color: string = '#7fffd4';
@@ -10,9 +11,9 @@
 
 	let resetTimeout: number | undefined = undefined;
 
-	$: {
-		if (browser) {
-			if ($navigating) {
+	onMount(() => {
+		navigating.subscribe((n) => {
+			if (n) {
 				currentState = 'loading';
 			} else {
 				if (currentState == 'loading') {
@@ -32,8 +33,8 @@
 					}, animationDuration);
 				}
 			}
-		}
-	}
+		});
+	});
 </script>
 
 <div class="navigation-loader-container" style="--height: {height}px">
