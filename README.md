@@ -12,7 +12,7 @@ Currently tested with `goto(...)` as well as `<a href="...">...</a>` navigation.
 ## Install
 
 ```
-npm install --save @wabosh/navigation-loader
+npm install --save-dev @wabosh/navigation-loader
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ Simply put it at the start of your `+layout.svelte`.
     import {NavigationLoader} from "@wabosh/navigation-loader";
 </script>
 
-<NavigationLoader animationDuration={250} color="#7fffd4">
+<NavigationLoader animationDuration={250} color="#7fffd4" />
 
 <slot />
 ```
