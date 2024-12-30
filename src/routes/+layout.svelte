@@ -1,44 +1,51 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import '../app.css';
 
 	import NavigationLoader from '$lib/svelte/NavigationLoader.svelte';
 	import { page } from '$app/stores';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
 
-	$: target = $page.url.pathname == '/next' ? '/?load' : '/next?load';
+	let { children }: Props = $props();
+
+	let target = $derived($page.url.pathname == '/next' ? '/?load' : '/next?load');
 
 	// Color
-	let color = '#66cc8a';
-	$: loaderColor = (color.length - 1) % 3 === 0 ? color : '#66cc8a';
+	let color = $state('#66cc8a');
+	let loaderColor = $derived((color.length - 1) % 3 === 0 ? color : '#66cc8a');
 
-	$: {
+	run(() => {
 		if (!color.startsWith('#')) {
 			color = '#' + color;
 		}
 		if (color.length > 7) {
 			color = color.slice(0, 7);
 		}
-	}
+	});
 
 	// Size (bar height)
-	let size = '4';
-	let loaderSize = Number(size.replace(/\D/g, ''));
+	let size = $state('4');
+	let loaderSize = $state(Number(size.replace(/\D/g, '')));
 
-	$: {
+	run(() => {
 		loaderSize = Number(size.replace(/\D/g, ''));
 		size = loaderSize.toString();
-	}
+	});
 
 	// Duration
-	let duration = '250';
-	let loaderDuration = Number(duration.replace(/\D/g, ''));
+	let duration = $state('250');
+	let loaderDuration = $state(Number(duration.replace(/\D/g, '')));
 
-	$: {
+	run(() => {
 		loaderDuration = Number(duration.replace(/\D/g, ''));
 		duration = loaderDuration.toString();
-	}
+	});
 
 	// Code preview
-	$: codePreview = `
+	let codePreview = $derived(`
 <!-- +layout.svelte -->
 \<script\>
 	import { NavigationLoader } from '@wabosh/navigation-loader';
@@ -48,7 +55,7 @@
 	animationDuration={${loaderDuration}} 
 	color="${loaderColor}" 
 	height={${loaderSize}} 
-/>`.split('\n');
+/>`.split('\n'));
 </script>
 
 <svelte:head>
@@ -71,7 +78,7 @@
 					<span
 						style="background-color: {loaderColor};"
 						class="label-text-alt block rounded-[0.5rem] w-[5%] h-0 pb-[5%]"
-					/>
+					></span>
 				</label>
 				<input
 					name="color"
@@ -144,7 +151,7 @@
 		</div>
 	</div>
 
-	<slot />
+	{@render children?.()}
 
 	<!-- Navigation -->
 	<a href={target} class="btn btn-primary">Try out!</a>
